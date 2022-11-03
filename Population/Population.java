@@ -23,7 +23,6 @@ public class Population {
         Population nextGeneration = new Population(false);
         Individual[] individualsOfNextGeneration = new Individual[Config.getPopulationSize()];
 
-        // ToDo - Select and make individuals reproduce to create a new Population
         System.out.println("ToDo - Select and make individuals reproduce to create a new Population");
         System.out.println(individualsOfNextGeneration.length);
         Selection selection = new Selection();

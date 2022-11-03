@@ -25,11 +25,11 @@ public class Population {
 
         System.out.println("ToDo - Select and make individuals reproduce to create a new Population");
         System.out.println(individualsOfNextGeneration.length);
-        Selection selection = new Selection();
+
         int i = 0;
         while (i < individualsOfNextGeneration.length) {
-            Individual parent1 = selection.roulette(this);
-            Individual parent2 = selection.roulette(this);
+            Individual parent1 = Selection.roulette(this);
+            Individual parent2 = Selection.roulette(this);
             Individual[] children = Crossing.cross2X(parent1, parent2);
 
             //Mutate the children
@@ -50,8 +50,8 @@ public class Population {
 
     public double getSumOfFitness() {
         double sumOfFitness = 0.0;
-        for (int i = 0 ; i < this.population.length ; i++) {
-            sumOfFitness += this.population[i].getFitnessScore();
+        for (Individual individual : this.population) {
+            sumOfFitness += individual.getFitnessScore();
         }
         return sumOfFitness;
     }

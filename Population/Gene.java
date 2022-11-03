@@ -1,11 +1,9 @@
 package Population;
 
-import Configuration.Config;
-
 import java.util.Random;
 
 public class Gene {
-    int allele = 0;
+    int allele;
 
     /**
      * Generates a random gene
@@ -15,11 +13,4 @@ public class Gene {
         allele = new Random().nextInt(2);
     }
 
-    /**
-     * Generates a gene from pre-computed alleles
-     * @param allele The pre-computed alleles
-     */
-    public Gene(int allele) {
-        this.allele = allele;
-    }
 }

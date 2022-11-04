@@ -30,20 +30,18 @@ public class Individual {
      */
     public void computeFitnessScore() {
         int sumFitness = 0;
-        System.out.println("==========================================================");
-        for (int i=0; i<Config.getIndividualSize(); i++) {
-            sumFitness += this.genes[i].allele;
-            System.out.println("sumFitness = " + this.genes[i].allele);
+        for (int i=0; i<Config.getIndividualSize(); i++) { // For each gene
+            sumFitness += this.genes[i].allele; // Add the value of the gene to the fitness score
         }
-        System.out.println("==========================================================");
-        this.fitness = sumFitness;
+        this.fitness = sumFitness; // Set the fitness score
 
     }
 
+    // Performs a mutation on the individual
     public void doMutate() {
-        for (int i=0; i<Config.getIndividualSize(); i++) {
-            if (Math.random() < Config.getMutationRate()) {
-                this.genes[i].allele = (this.genes[i].allele == 0) ? 1 : 0;
+        for (int i=0; i<Config.getIndividualSize(); i++) { // For each gene
+            if (Math.random() < Config.getMutationRate()) { // If the mutation rate is reached
+                this.genes[i].allele = (this.genes[i].allele == 0) ? 1 : 0; // Invert the allele
             }
         }
     }

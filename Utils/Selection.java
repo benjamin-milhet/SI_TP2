@@ -13,20 +13,20 @@ public class Selection {
      * @return The chosen individual
      */
     public static Individual roulette(Population pop) {
-        Individual selectedIndividual = new Individual();
+        Individual selectedIndividual = new Individual(); // Creates a new individual
 
-        double sommeFitness = pop.getSumOfFitness(); // On calcule la somme des fitness
-        Random r = new Random(); // On initialise la fonction Random de Java
-        double randomPick = (sommeFitness * r.nextDouble()); // On tire un double au hasard entre 0 et la somme des fitness
+        double sommeFitness = pop.getSumOfFitness(); // Gets the sum of the fitness scores
+        Random r = new Random(); // Creates a random object
+        double randomPick = (sommeFitness * r.nextDouble()); // Generates a random number between 0 and the sum of the fitness scores
 
-        // On parcourt la population pour trouver l'individu qui correspond au double tiré au hasard
+        // For each individual
         for (int i = 0 ; i < pop.getPopSize()-1 ; i++) {
-            // Si le double est compris entre la fitness de l'individu i et celle de l'individu i+1
+            // If the random number is greater than the sum of the fitness scores of the previous individuals
             if (randomPick >= pop.getPopulation()[i].getFitnessScore() && randomPick < pop.getPopulation()[i + 1].getFitnessScore()) {
-                selectedIndividual = pop.getPopulation()[i]; // On retourne l'individu i
+                selectedIndividual = pop.getPopulation()[i]; // The selected individual is the current individual
             }
         }
 
-        return selectedIndividual;
+        return selectedIndividual; // Returns the selected individual
     }
 }

@@ -20,34 +20,33 @@ public class Population {
     }
 
     public Population computeNextGeneration() {
-        Population nextGeneration = new Population(false);
-        Individual[] individualsOfNextGeneration = new Individual[Config.getPopulationSize()];
+        Population nextGeneration = new Population(false); // Creates a new population
+        Individual[] individualsOfNextGeneration = new Individual[Config.getPopulationSize()]; // Creates an array of individuals
 
-        System.out.println("ToDo - Select and make individuals reproduce to create a new Population");
-        System.out.println(individualsOfNextGeneration.length);
-
-        int i = 0;
-        while (i < individualsOfNextGeneration.length) {
-            Individual parent1 = Selection.roulette(this);
-            Individual parent2 = Selection.roulette(this);
-            Individual[] children = Crossing.cross2X(parent1, parent2);
+        int i = 0; // Index of the next individual to be created
+        while (i < individualsOfNextGeneration.length) { // While there are still individuals to be created
+            Individual parent1 = Selection.roulette(this); // Selects the first parent
+            Individual parent2 = Selection.roulette(this); // Selects the second parent
+            Individual[] children = Crossing.cross2X(parent1, parent2); // Creates the children with a 2X crossing
 
             //Mutate the children
             children[0].doMutate();
             children[1].doMutate();
 
-            individualsOfNextGeneration[i] = children[0];
+            individualsOfNextGeneration[i] = children[0]; // Adds the first child to the array
             i++;
-            if (i < individualsOfNextGeneration.length) {
-                individualsOfNextGeneration[i] = children[1];
+            if (i < individualsOfNextGeneration.length) { // If there is still room for the second child
+                individualsOfNextGeneration[i] = children[1]; // Adds the second child to the array
                 i++;
             }
         }
 
-        nextGeneration.setPopulation(individualsOfNextGeneration);
-        return nextGeneration;
+        nextGeneration.setPopulation(individualsOfNextGeneration); // Sets the population of the next generation
+        return nextGeneration; // Returns the next generation
     }
 
+    // Getters and setters
+    //  sum of all fitness scores
     public double getSumOfFitness() {
         double sumOfFitness = 0.0;
         for (Individual individual : this.population) {
@@ -56,11 +55,11 @@ public class Population {
         return sumOfFitness;
     }
 
+    // find the best individual
     public Individual findBestIndividual() {
         int maxFitnessFound = 0;
         Individual bestIndividual = new Individual();
 
-        System.out.println("Config.getPopulationSize() " + Config.getPopulationSize());
         for (int i=0; i<Config.getPopulationSize(); i++) {
             System.out.println("Individual " + i + " has a fitness of " + population[i].getFitnessScore());
             if (this.population[i].getFitnessScore() > maxFitnessFound) {
